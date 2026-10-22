@@ -1,0 +1,81 @@
+- type: rmcERTCall
+  id: STERTCallMarsocSquad
+  name: st-ert-call-marsoc-squad-name
+  organization: st-ert-organization-marsoc
+  npcFactions: [ UNMC ]
+  iffFaction: FactionMarine
+  category: st-ert-category-black-ops
+  enabled: true
+  adminSelectable: true
+  adminButtonLabel: st-ert-admin-button-marsoc-squad
+  randomWeight: 0
+  allowedSources: [ Admin ]
+  shuttleMap: /Maps/_RMC14/Shuttles/ERT/ert_shuttle_big.yml
+  shuttleSpawner: RMCSpawnerERTShuttleBig
+  shuttleSpawnMarker: RMCERTShuttleStartPadUNMC
+  autoLaunch: false
+  shuttleTravelTime: 35s
+  landingTags: [ mainship ]
+  roles:
+  - id: officer
+    name: st-job-name-marsoc-officer
+    job: STMarsocOfficer
+    ghostRoleEntityPool:
+    - entity: STSpawnerMarsocOfficer
+      weight: 100
+    min: 1
+    max: 1
+    leader: true
+    roleTags: [ leader, command ]
+    seatTags: [ command ]
+    priority: 100
+  - id: team_leader
+    name: st-job-name-marsoc-tl
+    job: STMarsocTeamLeader
+    ghostRoleEntityPool:
+    - entity: STSpawnerMarsocTeamLeader
+      weight: 100
+    min: 1
+    max: 1
+    roleTags: [ command, rifleman ]
+    seatTags: [ command, troop ]
+    priority: 90
+  - id: medic
+    name: st-job-name-marsoc-medic
+    job: STMarsocMedic
+    ghostRoleEntityPool:
+    - entity: STSpawnerMarsocMedic
+      weight: 100
+    min: 1
+    max: 1
+    roleTags: [ medic ]
+    seatTags: [ medic, troop ]
+    priority: 60
+  - id: specialist
+    name: st-job-name-marsoc-specialist
+    job: STMarsocSpecialist
+    ghostRoleEntityPool:
+    - entity: STSpawnerMarsocSpecialist
+      weight: 100
+    min: 0
+    max: 1
+    required: false
+    roleTags: [ engineer, specialist, rifleman ]
+    seatTags: [ engineer, troop ]
+    priority: 50
+  - id: operative
+    name: st-job-name-marsoc-operative
+    job: STMarsocOperative
+    ghostRoleEntityPool:
+    - entity: STSpawnerMarsocOperative
+      weight: 100
+    min: 2
+    max: 3
+    roleTags: [ rifleman ]
+    seatTags: [ troop ]
+    priority: 40
+  requirements:
+    cooldown: 10m
+    recruitmentDuration: 45s
+    maxCallsPerRound: 1
+    minRequiredSlots: 4

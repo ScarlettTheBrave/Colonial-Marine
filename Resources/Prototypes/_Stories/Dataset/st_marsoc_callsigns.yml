@@ -1,0 +1,17 @@
+- type: localizedDataset
+  id: STMarsocCallsignsOfficer
+  values:
+    prefix: st-marsoc-callsign-officer-
+    count: 4
+
+- type: localizedDataset
+  id: STMarsocCallsignsTeamLeader
+  values:
+    prefix: st-marsoc-callsign-tl-
+    count: 4
+
+- type: localizedDataset
+  id: STMarsocCallsignsSquad
+  values:
+    prefix: st-marsoc-callsign-squad-
+    count: 10

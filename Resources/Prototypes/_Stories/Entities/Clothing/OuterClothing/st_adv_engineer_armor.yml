@@ -1,0 +1,27 @@
+- type: entity
+  parent: RMCBaseMarineArmor 
+  id: STArmorAdvancedEngineer
+  name: ent-STArmorAdvancedEngineer
+  description: ent-STArmorAdvancedEngineer.desc
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Humans/Steelpoint.rsi
+    state: steelpoint_armor 
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/OuterClothing/Armor/Humans/Steelpoint.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: steelpoint_armor 
+      
+  - type: CMArmor
+    melee: 25
+    bullet: 20
+    explosionArmor: 25
+    bio: 15
+
+  - type: RMCArmorSpeedTier
+    speedTier: heavy
+
+  - type: ClothingSpeedModifier
+    walkModifier: 0.64
+    sprintModifier: 0.64

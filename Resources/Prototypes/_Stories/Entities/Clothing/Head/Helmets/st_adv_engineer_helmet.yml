@@ -1,0 +1,24 @@
+- type: entity
+  parent: RMCArmorHelmetFirefighter 
+  id: STHelmetAdvancedEngineer
+  name: ent-STHelmetAdvancedEngineer
+  description: ent-STHelmetAdvancedEngineer.desc
+  components:
+  - type: EyeProtection # Immunable to blight
+  - type: RMCEarProtection
+  - type: CMArmor 
+    melee: 25
+    bullet: 20
+    explosionArmor: 10
+    bio: 30
+  - type: CycleableVisor 
+    offIcon:
+      sprite: _RMC14/Objects/Clothing/helmet_visors.rsi
+      state: sight_up
+    containers:
+    - rmc_visor_one
+    - rmc_visor_two
+    - rmc_visor_three
+  - type: IntegratedVisors
+    visorsToAdd:
+    - RMCVisorSquadIntegrated

@@ -1,0 +1,20 @@
+- type: entity
+  parent: CMBackpackEngineer
+  id: STBackpackAdvancedEngineer
+  name: ent-STBackpackAdvancedEngineer
+  description: ent-STBackpackAdvancedEngineer.desc
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Back/Backpacks/Humans/STBackpacks.rsi
+    layers:
+    - state: invis_android_powerpack
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Back/Backpacks/Humans/STBackpacks.rsi
+    clothingVisuals:
+      back:
+      - state: invis_android_powerpack_state
+  - type: Item
+    sprite: _RMC14/Objects/Clothing/Back/Backpacks/Marines/welder/jungle-desert-classic.rsi
+  - type: CMStorageVisualizer
+    storageClosed: null
+    storageOpen: null

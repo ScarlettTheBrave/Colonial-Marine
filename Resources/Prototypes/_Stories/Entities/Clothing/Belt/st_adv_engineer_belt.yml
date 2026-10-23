@@ -1,0 +1,133 @@
+- type: entity
+  parent: WelderIndustrialAdvanced
+  id: STWelderIndustrialAdvanced
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      Welder:
+        maxVol: 250
+        reagents:
+        - ReagentId: RMCWeldingFuel
+          Quantity: 250
+  - type: RefillableSolution
+    solution: Welder
+  - type: Welder
+    fuelReagent: RMCWeldingFuel
+  - type: Blowtorch
+
+- type: entity
+  parent: CMBeltUtility
+  id: STBeltUtilityAdvancedEngineer
+  components:
+  - type: Clothing
+    slots:
+    - belt
+  - type: Tag
+    tags:
+    - RMCTankFuel
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,23,1
+    whitelist:
+      tags:
+      - Crowbar
+      - Screwdriver
+      - Wirecutter
+      - Wrench
+      - CableCoil
+      - Multitool
+      - Flashlight
+      - Welder
+      - PowerCell
+      - CMFireExtinguisherPortable
+      - RMCExplosiveBreachingCharge
+      - RodMetal1
+      - RMCNailgunCompact
+      - RMCNailgunTactical
+      - RMCCircuitboard
+      - RMCSynthResetKey
+      - RMCSentryLaptop
+      components:
+      - Welder
+      - Stack
+      - SentryLaptop
+  - type: IgnoreContentsSize
+    items:
+      tags:
+      - Crowbar
+      - Screwdriver
+      - Wirecutter
+      - Wrench
+      - CableCoil
+      - Multitool
+      - Flashlight
+      - Welder
+      - PowerCell
+      - CMFireExtinguisherPortable
+      - RMCExplosiveBreachingCharge
+      - RodMetal1
+      - RMCNailgunCompact
+      - RMCNailgunTactical
+      - RMCCircuitboard
+      - RMCSynthResetKey
+      - RMCSentryLaptop
+      - RMCSynthResetKey
+      - PowerCell
+      - RMCPowerCell
+      - RMCPowerCellAPC
+      - RMCPowerCellCrap
+      - RMCPowerCellHigh
+      - RMCPowerCellHyper
+  
+      components:
+      - Welder
+      - Stack
+      - SentryLaptop
+  - type: ExaminableSolution
+    solution: tank
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        maxVol: 260
+        reagents:
+        - ReagentId: RMCWeldingFuel
+          Quantity: 260
+  - type: ReagentTank
+    tankType: Fuel
+  - type: DrainableSolution
+    solution: tank
+  - type: SolutionTransfer
+    transferAmount: 50
+    maxTransferAmount: 100
+    minTransferAmount: 10
+    canChangeTransferAmount: true
+  - type: RefillableSolution
+    solution: tank
+  - type: DrawableSolution
+    solution: tank
+  - type: RMCSolutionTransferWhitelist
+    popup: rmc-solution-transfer-whitelist-failed-not-welding-tank
+    sourceWhitelist:
+      components:
+      - RMCFlamerTank
+      - Welder
+    targetWhitelist:
+      tags:
+      - RMCTankFuel
+
+- type: entity
+  parent: STBeltUtilityAdvancedEngineer
+  id: STBeltUtilityAdvancedEngineerFilled
+  suffix: Filled, AdvEngineer
+  components:
+  - type: StorageFill
+    contents:
+    - id: STWelderIndustrialAdvanced
+    - id: RMCTacticalPrybar
+    - id: CMScrewdriver
+    - id: CMWrench
+    - id: CMWirecutter
+    - id: RMCCableCoil30
+    - id: CMMultitool
+    - id: RMCNailgunCompact

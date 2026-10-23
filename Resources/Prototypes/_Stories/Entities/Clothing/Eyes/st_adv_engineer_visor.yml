@@ -1,0 +1,42 @@
+- type: entity
+  parent: [ClothingEyesHudMedical, BaseToggleClothing]
+  id: STVisorAdvancedEngineer
+  components:
+  - type: Item
+    size: Small
+    storedRotation: 0
+  - type: Sprite
+    sprite: _Stories/Objects/Clothing/Eyes/STEngiHud.rsi
+    state: degoggles
+  - type: Clothing
+    sprite: _Stories/Objects/Clothing/Eyes/STEngiHud.rsi
+  - type: ItemToggle
+    activated: true
+    soundActivate:
+      path: /Audio/_RMC14/Machines/click.ogg
+      params:
+        variation: 0.250
+    soundDeactivate:
+      path: /Audio/_RMC14/Machines/click.ogg
+      params:
+        variation: 0.250
+  - type: ToggleClothing
+    action: RMCActionToggleMedhud
+  - type: ComponentToggler
+    components:
+    - type: StoriesEngineerHud
+  - type: RMCItemToggleClothingVisuals
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          True: {state: meson}
+          False: {state: degoggles}
+  - type: Appearance
+  - type: ItemToggleRequiresSkill
+    skills:
+      RMCSkillEngineer: 4
+  - type: ItemToggleDeactivateUnskilled
+    skills:
+      RMCSkillEngineer: 4
+    popup: rmc-skills-hud-toggle

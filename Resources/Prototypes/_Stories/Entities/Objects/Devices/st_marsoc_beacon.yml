@@ -1,0 +1,20 @@
+- type: entity
+  parent: DefaultStationBeaconUnanchored
+  id: STMarsocExtractionBeacon
+  components:
+  - type: STMarsocExtractionBeacon
+
+- type: entity
+  id: STMarsocExtractionFlare
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _RMC14/Objects/Misc/flares.rsi
+    layers:
+    - state: flare-on
+      color: "#00E5FF"
+  - type: PointLight
+    enabled: true
+    radius: 3.5
+    energy: 2.0
+    color: "#00E5FF"

@@ -1,0 +1,98 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      x:Class="Content.Client._Stories.MARSOC.STMarsocBriefingWindow"
+                      Title="{Loc 'st-marsoc-briefing-window-title'}"
+                      MinSize="780 620"
+                      SetSize="780 620">
+    <BoxContainer Orientation="Vertical" Margin="14" SeparationOverride="8" VerticalExpand="True" HorizontalExpand="True">
+        <!-- Шапка без наложения строк -->
+        <BoxContainer Orientation="Vertical" HorizontalExpand="True" SeparationOverride="2">
+            <Label Name="OperationTitleLabel" StyleClasses="LabelHeading" HorizontalExpand="True" />
+            <Label Name="IntelSummaryLabel" HorizontalExpand="True" />
+        </BoxContainer>
+
+        <!-- Верхнее прямоугольное окно: целиком занято фоном видеосвязи Командования и крупным портретом по грудь -->
+        <PanelContainer Name="TransmissionMonitorPanel" HorizontalExpand="True" SetHeight="194">
+            <Control Name="MonitorScreenRoot" HorizontalExpand="True" VerticalExpand="True" RectClipContent="True">
+                <Control Name="MonitorBackdropContainer" HorizontalExpand="True" VerticalExpand="True" />
+
+                <BoxContainer Orientation="Vertical"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              SeparationOverride="4">
+                    <PanelContainer Name="CrtPortraitPanel" SetWidth="228" SetHeight="154" HorizontalAlignment="Center">
+                        <!-- Окно обрезки 220x148, внутри которого TextureRect 220x228 выровнен по верхнему краю (голова + торс, без ног) -->
+                        <Control Name="PortraitClipContainer"
+                                 SetWidth="220"
+                                 SetHeight="148"
+                                 RectClipContent="True"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center">
+                            <TextureRect Name="PortraitTextureRect"
+                                         SetWidth="220"
+                                         SetHeight="228"
+                                         HorizontalAlignment="Center"
+                                         VerticalAlignment="Top"
+                                         Stretch="KeepAspectCentered" />
+                        </Control>
+                    </PanelContainer>
+                    <Label Name="SpeakerNameLabel" HorizontalAlignment="Center" />
+                </BoxContainer>
+
+                <Control Name="MonitorCrtContainer" HorizontalExpand="True" VerticalExpand="True" />
+            </Control>
+        </PanelContainer>
+
+        <!-- Широкое растянутое полотно текста под экраном видеосвязи -->
+        <PanelContainer Name="DialoguePanel" HorizontalExpand="True" SetHeight="104">
+            <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" SeparationOverride="4">
+                <RichTextLabel Name="DialogueLabel"
+                               VerticalExpand="True"
+                               HorizontalExpand="True"
+                               HorizontalAlignment="Center" />
+                <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                    <Label Name="SegmentCounterLabel" HorizontalExpand="True" />
+                    <Button Name="SkipTypingButton" Text="{Loc 'st-marsoc-briefing-btn-skip'}" />
+                </BoxContainer>
+            </BoxContainer>
+        </PanelContainer>
+
+        <!-- Блок директив с верхним отступом, чтобы первая строка не срезалась -->
+        <PanelContainer Name="ObjectivesPanel" HorizontalExpand="True" VerticalExpand="True">
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" SeparationOverride="6">
+                <Label Name="ObjectivesHeaderLabel" Text="{Loc 'st-marsoc-briefing-objectives-header'}" />
+                <BoxContainer Name="ObjectivesListContainer"
+                              Orientation="Vertical"
+                              Margin="0 6 0 4"
+                              SeparationOverride="6"
+                              HorizontalExpand="True" />
+            </BoxContainer>
+        </PanelContainer>
+
+        <!-- Лаконичный пульт: Спавн отряда | Вылет -> Выбор и фиксация сектора | Блокировка/Открытие шлюза -->
+        <PanelContainer Name="ControlsBarPanel" HorizontalExpand="True">
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True" SeparationOverride="6">
+                <BoxContainer Name="SectorSelectionRow" Orientation="Horizontal" HorizontalExpand="True" SeparationOverride="8">
+                    <Label Name="DropSectorLabel" HorizontalExpand="True" VerticalAlignment="Center" />
+                    <Button Name="CycleSectorButton" Text="{Loc 'st-marsoc-briefing-btn-sector'}" />
+                    <Button Name="LockSectorButton" Text="{Loc 'st-marsoc-briefing-btn-lock-sector'}" />
+                </BoxContainer>
+
+                <BoxContainer Orientation="Horizontal" HorizontalExpand="True" SeparationOverride="8">
+                    <Button Name="DeploySquadButton"
+                            Text="{Loc 'st-marsoc-briefing-btn-deploy'}"
+                            HorizontalExpand="True" />
+
+                    <Button Name="LaunchFlightButton"
+                            Text="{Loc 'st-marsoc-briefing-btn-launch'}"
+                            HorizontalExpand="True" />
+
+                    <Button Name="ToggleParadropButton"
+                            Text="{Loc 'st-marsoc-briefing-btn-paradrop-off'}"
+                            HorizontalExpand="True" />
+                </BoxContainer>
+            </BoxContainer>
+        </PanelContainer>
+    </BoxContainer>
+</controls:FancyWindow>

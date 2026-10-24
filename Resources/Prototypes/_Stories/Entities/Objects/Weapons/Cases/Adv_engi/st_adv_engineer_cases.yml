@@ -1,0 +1,30 @@
+- type: entity
+  parent: RMCBaseEquipmentCase
+  id: STAdvEngineerEquipmentCase
+  components:
+  - type: Sprite
+    layers:
+    - state: closed
+      map: [ base ]
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,15,3
+  - type: StorageFill
+    contents:
+    - id: STBackpackAdvancedEngineer
+    - id: STArmorAdvancedEngineer
+    - id: STHelmetAdvancedEngineer
+    - id: STManualAdvancedEngineer
+    - id: STBeltUtilityAdvancedEngineerFilled
+    - id: CMSheetMetal50
+      amount: 2
+    - id: CMSheetPlasteel50
+      amount: 1
+    # Stories-Start: 
+    # STEngineerHud + STCircuitboard.
+    - id: STVisorAdvancedEngineer
+    - id: STCircuitboardDriller
+    - id: STCircuitboardTurret
+    - id: STCircuitboardTransporter
+    # Stories-End

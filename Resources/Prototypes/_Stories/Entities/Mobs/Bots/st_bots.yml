@@ -1,0 +1,565 @@
+# Stories-Robotics-Start
+
+- type: entity
+  id: STBotBase
+  abstract: true
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Actions
+  - type: DoAfter
+  - type: Examiner
+  - type: NoSlip
+  - type: DeviceLinkSink
+    ports:
+    - SentryControl
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.4
+    baseSprintSpeed: 2.4
+  - type: Physics
+    bodyType: Dynamic
+    fixedRotation: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 2500
+        restitution: 0.0
+        hard: true
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+        - TableLayer
+        - MachineLayer
+  - type: MobState
+    allowedStates: [ Alive, Dead ]
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      450: Dead
+  - type: HealthExaminable
+    examinableTypes: []
+  - type: Unrevivable
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: RMCRepairable
+    heal: 50
+    delay: 3
+    fuelUsed: 1
+    skill: RMCSkillEngineer
+    skillRequired: 4
+    repairableDamageLimit: 450
+  - type: PowerCellSlot
+    cellSlotId: power_cell
+  - type: PowerCellDraw
+    drawRate: 3
+    useRate: 0
+  - type: ItemSlots
+    slots:
+      power_cell:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHigh
+        locked: true
+        whitelist:
+          tags:
+          - PowerCell
+  - type: ContainerContainer
+    containers:
+      power_cell: !type:ContainerSlot
+  - type: StoriesBotBattery
+    slotId: power_cell
+    maxHealth: 450
+    overkillDamageThreshold: 500
+    destroyedBoardProto: STCircuitboardDestroyed
+    scrapMaterialProto: CMSheetMetal1
+
+- type: entity
+  parent: STBotBase
+  id: STBotDriller
+  components:
+  - type: Sprite
+    sprite: _Stories/Mobs/Robots/STDrillbot.rsi
+    state: idle
+  - type: StoriesBotBattery
+    intactBoardProto: STCircuitboardDriller
+  - type: StoriesBotDriller
+    duration: 5
+    reinforcedDuration: 10
+    blacklist:
+      components:
+      - Indestructible
+  - type: Construction
+    graph: STBotDrillerGraph
+    node: bot
+
+- type: entity
+  parent: STBotBase
+  id: STBotTransporter
+  components:
+  - type: Sprite
+    sprite: _Stories/Mobs/Robots/STTransporter.rsi
+    state: transporter
+  - type: StoriesBotBattery
+    intactBoardProto: STCircuitboardTransporter
+  - type: Buckle
+  - type: Strap
+    position: Stand
+  - type: Construction
+    graph: STBotTransporterGraph
+    node: bot
+
+- type: entity
+  parent: STBotBase
+  id: STBotTurret
+  components:
+  - type: Sprite
+    sprite: _Stories/Mobs/Robots/STTurret.rsi
+    state: turret
+  - type: StoriesBotBattery
+    intactBoardProto: STCircuitboardTurret
+  - type: StoriesBotTurret
+    aggroRange: 7.5
+    shotsPerBurst: 5
+    shotInterval: 0.18
+    burstCooldown: 2.2
+    rotationSpeedDegrees: 180
+    ammo: 75
+    maxAmmo: 75
+  - type: GunDamageModifier
+    multiplier: 0.45
+  - type: Gun
+    fireRate: 6
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    minAngle: 16
+    maxAngle: 42
+    angleIncrease: 7
+    angleDecay: 12
+    soundGunshot:
+      path: /Audio/_RMC14/Weapons/Guns/Gunshots/gun_m2c2.ogg
+      params:
+        volume: -5
+        variation: 0.05
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+  - type: Construction
+    graph: STBotTurretGraph
+    node: bot
+
+- type: entity
+  parent: BaseItem
+  id: STCircuitboardDestroyed
+  components:
+  - type: Sprite
+    sprite: _Stories/Objects/Misc/STCircuitboard.rsi
+    state: drill
+    color: "#444444"
+  - type: Item
+    size: Small
+
+- type: entity
+  id: STBotFrameBase
+  abstract: true
+  components:
+  - type: Transform
+    anchored: true
+  - type: InteractionOutline
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.35,-0.35,0.35,0.35"
+        density: 50
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
+  parent: STBotFrameBase
+  id: STBotFrameDriller
+  components:
+  - type: Sprite
+    sprite: _Stories/Mobs/Robots/STDrillbot.rsi
+    state: idle
+    color: "#555555"
+  - type: Construction
+    graph: STBotDrillerGraph
+    node: frame
+    targetNode: bot
+
+- type: entity
+  parent: STBotFrameBase
+  id: STBotFrameTransporter
+  components:
+  - type: Sprite
+    sprite: _Stories/Mobs/Robots/STTransporter.rsi
+    state: transporter
+    color: "#555555"
+  - type: Construction
+    graph: STBotTransporterGraph
+    node: frame
+    targetNode: bot
+
+- type: entity
+  parent: STBotFrameBase
+  id: STBotFrameTurret
+  components:
+  - type: Sprite
+    sprite: _Stories/Mobs/Robots/STTurret.rsi
+    state: turret
+    color: "#555555"
+  - type: Construction
+    graph: STBotTurretGraph
+    node: frame
+    targetNode: bot
+
+# --- STBotDriller ---
+- type: constructionGraph
+  parent: RMC
+  id: STBotDrillerGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: frame
+      steps:
+      - material: CMSteel
+        amount: 20
+        doAfter: 3
+  - node: frame
+    entity: STBotFrameDriller
+    edges:
+    - to: bot
+      steps:
+      - tag: STBoardDriller
+        name: stories-construction-step-board-driller
+        icon: { sprite: _Stories/Objects/Misc/STCircuitboard.rsi, state: drill }
+        doAfter: 2
+      - tool: Screwing
+        icon: { sprite: _RMC14/Objects/Tools/screwdriver.rsi, state: screwdriver }
+        doAfter: 2
+      - tool: Pulsing
+        icon: { sprite: _RMC14/Objects/Tools/multitool.rsi, state: multitool }
+        doAfter: 2
+      - tag: PowerCell
+        name: stories-construction-step-power-cell
+        icon: { sprite: Objects/Power/power_cells.rsi, state: high }
+        doAfter: 2
+      - material: CMPlasteel
+        amount: 10
+        doAfter: 3
+      - tool: Welding
+        icon: { sprite: _RMC14/Objects/Tools/welder.rsi, state: welder }
+        doAfter: 3
+  - node: bot
+    entity: STBotDriller
+
+- type: construction
+  parent: RMC
+  name: stories-construction-bot-driller-name
+  id: STBotDrillerBuild
+  graph: STBotDrillerGraph
+  startNode: start
+  targetNode: bot
+  category: construction-category-st-robotics
+  description: stories-construction-bot-driller-desc
+  objectType: Structure
+  placementMode: SnapgridCenter
+  conditions:
+  - !type:StoriesRequiresSkillCondition
+    skill: RMCSkillEngineer
+    level: 5
+
+# --- STBotTransporter ---
+- type: constructionGraph
+  parent: RMC
+  id: STBotTransporterGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: frame
+      steps:
+      - material: CMSteel
+        amount: 20
+        doAfter: 3
+  - node: frame
+    entity: STBotFrameTransporter
+    edges:
+    - to: bot
+      steps:
+      - tag: STBoardTransporter
+        name: stories-construction-step-board-transporter
+        icon: { sprite: _Stories/Objects/Misc/STCircuitboard.rsi, state: transporter }
+        doAfter: 2
+      - tool: Screwing
+        icon: { sprite: _RMC14/Objects/Tools/screwdriver.rsi, state: screwdriver }
+        doAfter: 2
+      - tool: Pulsing
+        icon: { sprite: _RMC14/Objects/Tools/multitool.rsi, state: multitool }
+        doAfter: 2
+      - tag: PowerCell
+        name: stories-construction-step-power-cell
+        icon: { sprite: Objects/Power/power_cells.rsi, state: high }
+        doAfter: 2
+      - material: CMPlasteel
+        amount: 10
+        doAfter: 3
+      - tool: Welding
+        icon: { sprite: _RMC14/Objects/Tools/welder.rsi, state: welder }
+        doAfter: 3
+  - node: bot
+    entity: STBotTransporter
+
+- type: construction
+  parent: RMC
+  name: stories-construction-bot-transporter-name
+  id: STBotTransporterBuild
+  graph: STBotTransporterGraph
+  startNode: start
+  targetNode: bot
+  category: construction-category-st-robotics
+  description: stories-construction-bot-transporter-desc
+  objectType: Structure
+  placementMode: SnapgridCenter
+  conditions:
+  - !type:StoriesRequiresSkillCondition
+    skill: RMCSkillEngineer
+    level: 5
+
+# --- STBotTurret ---
+- type: constructionGraph
+  parent: RMC
+  id: STBotTurretGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: frame
+      steps:
+      - material: CMSteel
+        amount: 20
+        doAfter: 3
+  - node: frame
+    entity: STBotFrameTurret
+    edges:
+    - to: bot
+      steps:
+      - tag: STBoardTurret
+        name: stories-construction-step-board-turret
+        icon: { sprite: _Stories/Objects/Misc/STCircuitboard.rsi, state: turret }
+        doAfter: 2
+      - tool: Screwing
+        icon: { sprite: _RMC14/Objects/Tools/screwdriver.rsi, state: screwdriver }
+        doAfter: 2
+      - tool: Pulsing
+        icon: { sprite: _RMC14/Objects/Tools/multitool.rsi, state: multitool }
+        doAfter: 2
+      - tag: PowerCell
+        name: stories-construction-step-power-cell
+        icon: { sprite: Objects/Power/power_cells.rsi, state: high }
+        doAfter: 2
+      - material: CMPlasteel
+        amount: 10
+        doAfter: 3
+      - tag: RMCMagazineM2C
+        name: stories-construction-step-m2c-ammo
+        icon: { sprite: _RMC14/Objects/Weapons/Guns/Ammunition/Magazines/HMGs/m2c.rsi, state: mag-1 }
+        doAfter: 2
+      - tool: Welding
+        icon: { sprite: _RMC14/Objects/Tools/welder.rsi, state: welder }
+        doAfter: 3
+  - node: bot
+    entity: STBotTurret
+
+- type: construction
+  parent: RMC
+  name: stories-construction-bot-turret-name
+  id: STBotTurretBuild
+  graph: STBotTurretGraph
+  startNode: start
+  targetNode: bot
+  category: construction-category-st-robotics
+  description: stories-construction-bot-turret-desc
+  objectType: Structure
+  placementMode: SnapgridCenter
+  conditions:
+  - !type:StoriesRequiresSkillCondition
+    skill: RMCSkillEngineer
+    level: 5
+
+# Register board tags required by TagConstructionGraphStep
+- type: Tag
+  id: STBoardDriller
+
+- type: Tag
+  id: STBoardTransporter
+
+- type: Tag
+  id: STBoardTurret
+
+- type: announcementPreset
+  id: STEngineeringBot
+  name: stories-announcement-preset-name-engineering-bot
+  description: "Telemetry alerts from marine autonomous engineering robotics"
+  target: Marines
+  defaultPreference: Stylized
+  visibleInSettings: false
+  visibleInLayoutEditor: false
+  sound:
+    path: "/Audio/Machines/twobeep.ogg"
+  priority: 1
+  canInterrupt: false
+  canBeInterrupted: true
+  presentations:
+    stylized:
+      style:
+        animation:
+          animation: !type:TypewriterAnimationConfig
+            printSpeed: 0.025
+          holdDuration: 7
+          flickerChance: 0
+          enableCRT: true
+        layout:
+          position: TopLeft
+          speakerNamePosition: Below
+          spritePosition: Left
+          spriteSpacing: 0
+          spriteDisplayMode: FullSprite
+          uIScale: 3
+          titlePosition: Above
+        background:
+          showBackground: false
+          backgroundAlpha: 0.7
+          backgroundColor: "#241405"
+        text:
+          primaryColor: "#FFD199"
+          font: "Cozette"
+          fontSize: 20
+          lineHeight: 48
+          showSpeakerName: true
+          speakerNameColor: "#FFAE42"
+          speakerNameFontSize: 14
+        sprite:
+          showSpriteBox: true
+          spriteBoxColor: "#241405"
+          spriteBoxBorderColor: "#FF8C1A"
+          spriteBoxBorderThickness: 2
+          spriteBoxPadding: 18
+          spriteGlow: false
+          spriteGlowColor: "#FF8C1A"
+          spriteGlowIntensity: 0.6
+          spriteScale: 1
+        title:
+          showTitle: true
+          title: stories-announcement-title-engineering-bot
+          titleColor: "#FF8C1A"
+          titleFontSize: 15
+          titleFont: "CozetteBold"
+          titleUnderline: true
+          titleUnderlineThickness: 2
+        scaling:
+          responsiveScaleFactor: 2
+    default:
+      style:
+        animation:
+          animation: !type:TypewriterAnimationConfig
+            printSpeed: 0.025
+          holdDuration: 7
+          flickerChance: 0
+        layout:
+          position: TopLeft
+          speakerNamePosition: Below
+          spritePosition: Left
+          spriteSpacing: 0
+          spriteDisplayMode: FullSprite
+          uIScale: 3
+          titlePosition: Above
+        background:
+          showBackground: false
+          backgroundAlpha: 0.7
+          backgroundColor: "#241405"
+        text:
+          primaryColor: "#FFD199"
+          font: "Cozette"
+          fontSize: 20
+          lineHeight: 48
+          showSpeakerName: true
+          speakerNameColor: "#FFAE42"
+          speakerNameFontSize: 14
+        sprite:
+          showSpriteBox: true
+          spriteBoxColor: "#241405"
+          spriteBoxBorderColor: "#FF8C1A"
+          spriteBoxBorderThickness: 2
+          spriteBoxPadding: 18
+          spriteBoxShader: RMCMarineAnnouncementGrid
+          spriteGlow: false
+          spriteGlowColor: "#FF8C1A"
+          spriteGlowIntensity: 0.6
+          spriteScale: 1
+        title:
+          showTitle: true
+          title: stories-announcement-title-engineering-bot
+          titleColor: "#FF8C1A"
+          titleFontSize: 10
+          titleFont: "CozetteBold"
+          titleUnderline: true
+          titleUnderlineThickness: 2
+        scaling:
+          responsiveScaleFactor: 1.15
+    simplified:
+      showSprite: true
+      style:
+        animation:
+          animation: !type:NoneAnimationConfig
+          holdDuration: 6
+          flickerChance: 0
+        layout:
+          position: TopLeft
+          speakerNamePosition: Below
+          spritePosition: Left
+          spriteDisplayMode: FullSprite
+          uIScale: 2
+          titlePosition: Above
+        background:
+          showBackground: false
+          backgroundAlpha: 0.35
+          backgroundColor: "#241405"
+        text:
+          primaryColor: "#FFD199"
+          font: "Cozette"
+          fontSize: 20
+          lineHeight: 48
+          showSpeakerName: true
+          speakerNameColor: "#FFAE42"
+          speakerNameFontSize: 14
+        sprite:
+          showSpriteBox: true
+          spriteBoxColor: "#241405"
+          spriteBoxBorderColor: "#FF8C1A"
+          spriteBoxBorderThickness: 2
+          spriteBoxPadding: 14
+          spriteScale: 1
+        title:
+          showTitle: true
+          title: stories-announcement-title-engineering-bot
+          titleColor: "#FF8C1A"
+          titleFontSize: 10
+          titleFont: "CozetteBold"
+          titleUnderline: true
+          titleUnderlineThickness: 2
+        scaling:
+          responsiveScaleFactor: 1.15
+
+# Stories-Robotics-End

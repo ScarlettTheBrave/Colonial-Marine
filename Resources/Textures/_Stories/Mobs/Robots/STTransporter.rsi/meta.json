@@ -1,0 +1,12 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from Yogstation at https://github.com/yogstation13/Yogstation/blob/01c2ee7bb3b23fe5ce6a93b710de4a54d1037521/yogstation/icons/mob/DonorRobots.dmi",
+    "size": { "x": 32, "y": 32 },
+    "states": [
+        {
+            "name": "transporter",
+            "directions": 4
+        }
+    ]
+}

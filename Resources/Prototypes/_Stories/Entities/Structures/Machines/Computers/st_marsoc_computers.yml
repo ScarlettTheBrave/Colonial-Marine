@@ -1,0 +1,101 @@
+- type: entity
+  parent: MarkerBase
+  id: STMarsocDropZoneMarker
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _RMC14/Markers/landmarks.rsi
+    state: unmc_spawn
+
+- type: entity
+  parent: CMComputerDropshipNavigationERTBigCommAlt
+  id: STComputerMarsocBriefing
+  suffix: ST, MARSOC Briefing
+  components:
+  - type: ActivatableUI
+    key: enum.STMarsocBriefingUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.STMarsocBriefingUiKey.Key:
+        type: STMarsocBriefingBui
+  - type: STMarsocBriefingConsole
+    subInsertObjectives:
+    - markerPrototype: RMCIdentificationComputer
+      objectiveLoc: st-marsoc-subinsert-meridian-obj
+    - markerPrototype: RMCJumpsuitLiaisonGreyWorkwear
+      objectiveLoc: st-marsoc-subinsert-apartments-obj
+    - markerPrototype: WeaponShotgunCustomBuilt
+      objectiveLoc: st-marsoc-subinsert-bar-obj
+    missionPool:
+    - title: st-marsoc-mission-hybrisa-title
+      dialogue: st-marsoc-mission-hybrisa-dialogue
+      insertDisplayName: st-marsoc-intel-tse-survivors
+      insertKeywords:
+        - RMCSpawnPointParaCommander
+        - RMCSpawnPointParamarine
+      mandatoryObjectives:
+        - st-marsoc-mission-hybrisa-obj-1
+        - st-marsoc-mission-hybrisa-obj-2
+      optionalObjectivesPool:
+        - st-marsoc-mission-opt-1
+        - st-marsoc-mission-opt-2
+        - st-marsoc-mission-opt-3
+    - title: st-marsoc-mission-clf-spaceport-title
+      dialogue: st-marsoc-mission-clf-spaceport-dialogue
+      insertDisplayName: st-marsoc-intel-clf-spaceport
+      insertKeywords:
+        - RMCTurretGaussModifiedCLF
+        - RMCD18Case
+      mandatoryObjectives:
+        - st-marsoc-mission-clf-spaceport-obj-1
+        - st-marsoc-mission-clf-spaceport-obj-2
+      optionalObjectivesPool:
+        - st-marsoc-mission-opt-1
+        - st-marsoc-mission-opt-2
+        - st-marsoc-mission-opt-3
+    - title: st-marsoc-mission-tse-airbase-title
+      dialogue: st-marsoc-mission-tse-airbase-dialogue
+      insertDisplayName: st-marsoc-intel-tse-airbase
+      insertKeywords:
+        - RMCTSEDropshipWall1
+        - RMCFlightRecorderColonyProp
+      mandatoryObjectives:
+        - st-marsoc-mission-tse-airbase-obj-1
+        - st-marsoc-mission-tse-airbase-obj-2
+      optionalObjectivesPool:
+        - st-marsoc-mission-opt-1
+        - st-marsoc-mission-opt-2
+        - st-marsoc-mission-opt-3
+    - mapKeyword: trijent
+      title: st-marsoc-mission-trijent-title
+      dialogue: st-marsoc-mission-trijent-dialogue
+      insertDisplayName: st-marsoc-intel-trijent
+      mandatoryObjectives:
+        - st-marsoc-mission-trijent-obj-1
+        - st-marsoc-mission-trijent-obj-2
+      optionalObjectivesPool:
+        - st-marsoc-mission-opt-1
+        - st-marsoc-mission-opt-2
+        - st-marsoc-mission-opt-3
+    - mapKeyword: lv624
+      title: st-marsoc-mission-lv624-title
+      dialogue: st-marsoc-mission-lv624-dialogue
+      insertDisplayName: st-marsoc-intel-lv624
+      mandatoryObjectives:
+        - st-marsoc-mission-lv624-obj-1
+        - st-marsoc-mission-lv624-obj-2
+      optionalObjectivesPool:
+        - st-marsoc-mission-opt-1
+        - st-marsoc-mission-opt-2
+        - st-marsoc-mission-opt-3
+    - mapKeyword: hybrisa
+      title: st-marsoc-mission-hybrisa-title
+      dialogue: st-marsoc-mission-hybrisa-dialogue
+      insertDisplayName: st-marsoc-intel-standard
+      mandatoryObjectives:
+        - st-marsoc-mission-hybrisa-obj-1
+        - st-marsoc-mission-hybrisa-obj-2
+      optionalObjectivesPool:
+        - st-marsoc-mission-opt-1
+        - st-marsoc-mission-opt-2
+        - st-marsoc-mission-opt-3

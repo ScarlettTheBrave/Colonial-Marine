@@ -1,0 +1,96 @@
+- type: entity
+  parent: RMCArmorHelmetMARSOC
+  id: STArmorHelmetMARSOC
+  components:
+  - type: StorageFill
+    contents:
+    - id: RMCHelmetGarbNightVision
+
+- type: entity
+  parent: RMCArmorMARSOCXM40
+  id: STArmorMARSOCXM40
+  components:
+  - type: StorageFill
+    contents:
+    - id: RMCMagazineRifleXM40AP
+      amount: 4
+
+- type: entity
+  parent: RMCArmorMARSOCXM40
+  id: STArmorMARSOCSniper
+  components:
+  - type: StorageFill
+    contents:
+    - id: RMCMagazineSniperL112
+      amount: 3
+    - id: RMCMagazineSniperL112SH
+      amount: 1
+
+- type: entity
+  parent: CMBeltMedical
+  id: STBeltMedicalMarsocFilled
+  components:
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,23,1
+    whitelist:
+      tags:
+      - DiscreteHealthAnalyzer
+      - Dropper
+      - GlassBeaker
+      - Bottle
+      - PillCanister
+      - Syringe
+      - CMAutoInjector
+      - Brutepack
+      - Ointment
+      - Gauze
+      - CMTraumaKit
+      - CMBurnKit
+      components:
+      - Hypospray
+      - Defibrillator
+      - Healing
+      - Pill
+      - Injector
+      - CMHypospray
+      - RMCHyposprayFilledEpi
+  - type: IgnoreContentsSize
+    items:
+      tags:
+      - DiscreteHealthAnalyzer
+      - Dropper
+      - GlassBeaker
+      - Bottle
+      - PillCanister
+      - Syringe
+      - CMAutoInjector
+      - Brutepack
+      - Ointment
+      - Gauze
+      - CMTraumaKit
+      - CMBurnKit
+      - CMSynthGraft
+      - CMSurgicalLine
+      components:
+      - Hypospray
+      - Defibrillator
+      - Healing
+      - Pill
+      - Injector
+      - CMTraumaKit
+      - CMSynthGraft
+      - CMSurgicalLine
+  - type: StorageFill
+    contents:
+    - id: CMDefibrillator
+      amount: 3
+    - id: CMHypospray
+    - id: RMCHyposprayFilledEpi
+    - id: CMSurgicalLine
+      amount: 1
+    - id: CMSynthGraft
+      amount: 1
+    - id: CMUpgradedTraumaKit10
+    - id: CMUpgradedBurnKit10

@@ -1,0 +1,24 @@
+- type: entity
+  parent: CMArmorHelmetFirefighter 
+  id: TOHelmetAdvancedEngineer
+  name: ent-TOHelmetAdvancedEngineer
+  description: ent-TOHelmetAdvancedEngineer.desc
+  components:
+  - type: EyeProtection # Immunable to blight
+  - type: CMEarProtection
+  - type: CMArmor 
+    melee: 25
+    bullet: 20
+    explosionArmor: 10
+    bio: 30
+  - type: CycleableVisor 
+    offIcon:
+      sprite: _ColonialMarine/Objects/Clothing/helmet_visors.rsi
+      state: sight_up
+    containers:
+    - cm_visor_one
+    - cm_visor_two
+    - cm_visor_three
+  - type: IntegratedVisors
+    visorsToAdd:
+    - CMVisorSquadIntegrated

@@ -1,0 +1,13 @@
+- type: entity
+  parent: BaseItem
+  id: TOCircuitboardTurret
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: _TacticalOps/Objects/Misc/TOCircuitboard.rsi
+    layers:
+    - state: turret
+  - type: Tag
+    tags:
+    - TOBoardTurret

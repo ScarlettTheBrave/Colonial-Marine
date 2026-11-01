@@ -1,0 +1,27 @@
+- type: entity
+  parent: CMBaseMarineArmor 
+  id: TOArmorAdvancedEngineer
+  name: ent-TOArmorAdvancedEngineer
+  description: ent-TOArmorAdvancedEngineer.desc
+  components:
+  - type: Sprite
+    sprite: _TacticalOps/Objects/Clothing/OuterClothing/Armor/Humans/Steelpoint.rsi
+    state: steelpoint_armor 
+  - type: Clothing
+    sprite: _TacticalOps/Objects/Clothing/OuterClothing/Armor/Humans/Steelpoint.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: steelpoint_armor 
+      
+  - type: CMArmor
+    melee: 25
+    bullet: 20
+    explosionArmor: 25
+    bio: 15
+
+  - type: CMArmorSpeedTier
+    speedTier: heavy
+
+  - type: ClothingSpeedModifier
+    walkModifier: 0.64
+    sprintModifier: 0.64

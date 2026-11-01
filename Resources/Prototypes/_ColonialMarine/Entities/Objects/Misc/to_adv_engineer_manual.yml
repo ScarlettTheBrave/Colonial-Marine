@@ -1,0 +1,21 @@
+- type: entity
+  parent: CMPamphlet
+  id: TOManualAdvancedEngineer
+  name: ent-TOManualAdvancedEngineer
+  description: ent-TOManualAdvancedEngineer.desc
+  components:
+  - type: Sprite
+    state: pamphlet_construction
+  - type: SkillPamphlet
+    bypassSkill: true
+    addSkills:
+      CMSkillEngineer: 5
+      CMSkillConstruction: 3
+      CMSkillPowerLoader: 2
+    skillCap:
+      CMSkillEngineer: 5
+      CMSkillConstruction: 3
+      CMSkillPowerLoader: 2
+    giveJobTitle: cm-job-name-adv-engineer
+    givePrefix: cm-job-prefix-adv-engineer
+    isAppendPrefix: false

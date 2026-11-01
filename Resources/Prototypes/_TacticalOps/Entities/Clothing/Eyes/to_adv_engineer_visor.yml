@@ -1,0 +1,42 @@
+- type: entity
+  parent: [ClothingEyesHudMedical, BaseToggleClothing]
+  id: TOVisorAdvancedEngineer
+  components:
+  - type: Item
+    size: Small
+    storedRotation: 0
+  - type: Sprite
+    sprite: _TacticalOps/Objects/Clothing/Eyes/TOEngiHud.rsi
+    state: degoggles
+  - type: Clothing
+    sprite: _TacticalOps/Objects/Clothing/Eyes/TOEngiHud.rsi
+  - type: ItemToggle
+    activated: true
+    soundActivate:
+      path: /Audio/_ColonialMarine/Machines/click.ogg
+      params:
+        variation: 0.250
+    soundDeactivate:
+      path: /Audio/_ColonialMarine/Machines/click.ogg
+      params:
+        variation: 0.250
+  - type: ToggleClothing
+    action: CMActionToggleMedhud
+  - type: ComponentToggler
+    components:
+    - type: TacticalEngineerHud
+  - type: CMItemToggleClothingVisuals
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          True: {state: meson}
+          False: {state: degoggles}
+  - type: Appearance
+  - type: ItemToggleRequiresSkill
+    skills:
+      CMSkillEngineer: 4
+  - type: ItemToggleDeactivateUnskilled
+    skills:
+      CMSkillEngineer: 4
+    popup: cm-skills-hud-toggle

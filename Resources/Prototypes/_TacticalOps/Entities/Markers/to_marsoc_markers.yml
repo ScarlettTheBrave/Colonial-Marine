@@ -1,0 +1,129 @@
+- type: entity
+  id: TOMarsocDropZoneBase
+  parent: MarkerBase
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+  - type: TOMarsocDropZone
+
+- type: entity
+  id: TOMarsocDropZoneMarkerAlpha
+  parent: TOMarsocDropZoneBase
+  components:
+  - type: TOMarsocDropZone
+    sectorNameLoc: to-marsoc-sector-hybrisa-nw-checkpoint
+    order: 0
+
+- type: entity
+  id: TOMarsocDropZoneMarkerBravo
+  parent: TOMarsocDropZoneBase
+  components:
+  - type: TOMarsocDropZone
+    sectorNameLoc: to-marsoc-sector-hybrisa-nw-lot
+    order: 1
+
+- type: entity
+  id: TOMarsocDropZoneMarkerCharlie
+  parent: TOMarsocDropZoneBase
+  components:
+  - type: TOMarsocDropZone
+    sectorNameLoc: to-marsoc-sector-hybrisa-ne-streets
+    order: 2
+
+- type: entity
+  id: TOMarsocDropZoneMarkerDelta
+  parent: TOMarsocDropZoneBase
+  components:
+  - type: TOMarsocDropZone
+    sectorNameLoc: to-marsoc-sector-south
+    order: 3
+
+- type: entity
+  id: TOMarsocBunkerControllerMarker
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: yellow
+  - type: TOMarsocBunkerController
+
+- type: entity
+  id: TOMarsocLoreReport1
+  parent: CMPaper
+  components:
+  - type: Paper
+    content: to-marsoc-lore-report-1-text
+
+- type: entity
+  id: TOMarsocLoreReport2
+  parent: CMPaper
+  components:
+  - type: Paper
+    content: to-marsoc-lore-report-2-text
+
+- type: entity
+  id: TOMarsocLoreReport3
+  parent: CMPaper
+  components:
+  - type: Paper
+    content: to-marsoc-lore-report-3-text
+
+- type: entity
+  id: TOMarsocLoreReport4
+  parent: CMPaper
+  components:
+  - type: Paper
+    content: to-marsoc-lore-report-4-text
+
+- type: entity
+  id: TOMarsocWeYaBlackLedger
+  parent: CMPaper
+  components:
+  - type: Paper
+    content: to-marsoc-black-ledger-text
+
+- type: entity
+  id: TOMarsocWeYaResearchData
+  parent: CMPaper
+  components:
+  - type: Paper
+    content: to-marsoc-research-data-text
+
+- type: entity
+  id: TOMarsocExcavationJournal
+  parent: CMPaper
+  components:
+  - type: Paper
+    content: to-marsoc-excavation-journal-text
+
+- type: entity
+  id: TOMarsocWeYaCommandProtocols
+  parent: CMPaper
+  components:
+  - type: Paper
+    content: to-marsoc-command-protocols-text
+  - type: TOMarsocCommandProtocols
+
+- type: entity
+  id: TOMarsocAbominationFlask
+  parent: Beaker
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 10
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]

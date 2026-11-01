@@ -1,0 +1,20 @@
+- type: entity
+  parent: CMBackpackEngineer
+  id: TOBackpackAdvancedEngineer
+  name: ent-TOBackpackAdvancedEngineer
+  description: ent-TOBackpackAdvancedEngineer.desc
+  components:
+  - type: Sprite
+    sprite: _TacticalOps/Objects/Clothing/Back/Backpacks/Humans/TOBackpacks.rsi
+    layers:
+    - state: invis_android_powerpack
+  - type: Clothing
+    sprite: _TacticalOps/Objects/Clothing/Back/Backpacks/Humans/TOBackpacks.rsi
+    clothingVisuals:
+      back:
+      - state: invis_android_powerpack_state
+  - type: Item
+    sprite: _ColonialMarine/Objects/Clothing/Back/Backpacks/Marines/welder/jungle-desert-classic.rsi
+  - type: CMStorageVisualizer
+    storageClosed: null
+    storageOpen: null

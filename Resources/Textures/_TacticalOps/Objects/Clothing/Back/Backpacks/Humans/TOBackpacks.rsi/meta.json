@@ -1,0 +1,21 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from forest-cm13 at https://github.com/realforest2001/forest-cm13/blob/626d802c1c537bb548df52459a2ada34f2dcdcb6/icons/obj/items/clothing/backpack/backpacks_by_faction/WY.dmi",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+
+    
+        {
+            "name": "invis_android_powerpack"
+        },
+          {
+            "name": "invis_android_powerpack_state",
+            "directions": 4
+        }
+
+    ]
+}

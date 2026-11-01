@@ -1,0 +1,13 @@
+- type: entity
+  parent: BaseItem
+  id: TOCircuitboardDriller
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: _TacticalOps/Objects/Misc/TOCircuitboard.rsi
+    layers:
+    - state: drill
+  - type: Tag
+    tags:
+    - TOBoardDriller

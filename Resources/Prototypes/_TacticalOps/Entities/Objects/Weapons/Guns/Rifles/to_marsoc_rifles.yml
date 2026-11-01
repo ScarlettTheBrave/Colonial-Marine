@@ -1,0 +1,19 @@
+- type: entity
+  parent: CMWeaponRifleXM40
+  id: TOWeaponRifleXM40Marsoc
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: CMMagazineRifleXM40AP
+        insertSound: /Audio/_ColonialMarine/Weapons/Guns/Reload/m41_reload.ogg
+        ejectSound: /Audio/_ColonialMarine/Weapons/Guns/Reload/m41_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - CMMagazineRifleM54C
+          - CMMagazineRifleM54CAP
+          - CMMagazineRifleM54CExt
+          - CMMagazineRifleXM40AP
+          - CMMagazineRifleXM40HEAP

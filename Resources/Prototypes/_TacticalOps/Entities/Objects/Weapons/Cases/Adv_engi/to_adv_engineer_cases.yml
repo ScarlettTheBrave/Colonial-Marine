@@ -1,0 +1,30 @@
+- type: entity
+  parent: CMBaseEquipmentCase
+  id: TOAdvEngineerEquipmentCase
+  components:
+  - type: Sprite
+    layers:
+    - state: closed
+      map: [ base ]
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,15,3
+  - type: StorageFill
+    contents:
+    - id: TOBackpackAdvancedEngineer
+    - id: TOArmorAdvancedEngineer
+    - id: TOHelmetAdvancedEngineer
+    - id: TOManualAdvancedEngineer
+    - id: TOBeltUtilityAdvancedEngineerFilled
+    - id: CMSheetMetal50
+      amount: 2
+    - id: CMSheetPlasteel50
+      amount: 1
+    # Stories-Start: 
+    # TOEngineerHud + TOCircuitboard.
+    - id: TOVisorAdvancedEngineer
+    - id: TOCircuitboardDriller
+    - id: TOCircuitboardTurret
+    - id: TOCircuitboardTransporter
+    # Stories-End

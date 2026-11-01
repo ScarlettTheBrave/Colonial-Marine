@@ -1,0 +1,702 @@
+- type: department
+  id: TOMarsocDepartment
+  name: department-TOMarsoc
+  description: department-TOMarsoc-description
+  color: "#8B0000"
+  weight: 90
+  roles:
+  - TOMarsocOfficer
+
+
+- type: jobIcon
+  parent: CMJobIconBase
+  id: TOJobIconMarsocOfficer
+  icon:
+    sprite: _ColonialMarine/Interface/job_icons/UNMC/marsoc.rsi
+    state: hudsquad_soccmd
+
+- type: jobIcon
+  parent: CMJobIconBase
+  id: TOJobIconMarsocSpecialist
+  icon:
+    sprite: _ColonialMarine/Interface/job_icons/UNMC/marsoc.rsi
+    state: hudsquad_socsniper
+
+- type: jobIcon
+  parent: CMJobIconBase
+  id: TOJobIconMarsocMedic
+  icon:
+    sprite: _ColonialMarine/Interface/job_icons/UNMC/marsoc.rsi
+    state: hudsquad_socmed
+
+- type: playTimeTracker
+  id: TOJobMarsocOfficer
+
+- type: playTimeTracker
+  id: TOJobMarsocTeamLeader
+
+- type: playTimeTracker
+  id: TOJobMarsocOperative
+
+- type: playTimeTracker
+  id: TOJobMarsocMedic
+
+- type: playTimeTracker
+  id: TOJobMarsocSpecialist
+
+- type: rank
+  id: TORankMarsocSecondLt
+  name: Младший лейтенант
+  prefix: Мл. л-т
+  paygrade: O1
+
+  
+# MARSOC OFFICER (Capt / Maj)
+- type: job
+  parent: CMJobBase
+  id: TOMarsocOfficer
+  name: to-job-name-marsoc-officer
+  description: to-ghost-role-marsoc-officer-desc
+  playTimeTracker: TOJobMarsocOfficer
+  whitelisted: true
+  requirements:
+  - !type:RoleTimeRequirement
+    role: CMJobSquadLeader
+    time: 0 #180000 # 50 часов на КО/КС (можешь поставить 0 для локального теста)
+  - !type:DepartmentTimeRequirement
+    department: CMDepartmentCommand
+    time: 0 #360000 # 100 часов КОМа
+  ranks:
+    CMRankCaptain: [ ]
+    CMRankMajor: [ ]
+  startingGear: TOGearMarsocOfficer
+  icon: TOJobIconMarsocOfficer
+  joinNotifyCrew: false
+  access:
+  - CMAccessERT
+  accessGroups:
+  - ShipMasterAccess
+  spawnMenuRoleName: ST MARSOC Officer (Capt/Maj)
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: Language
+      spokenLanguages:
+      - English
+      - SignLanguage
+      - Russian
+      - Japanese
+      understoodLanguages:
+      - English
+      - SignLanguage
+      - Russian
+      - Japanese
+      currentLanguage: English
+      defaultLanguage: English
+    - type: Skills
+      skills:
+        CMSkillCqc: 4
+        CMSkillFireman: 4
+        CMSkillEngineer: 2
+        CMSkillConstruction: 2
+        CMSkillFirearms: 2
+        CMSkillLeadership: 3
+        CMSkillOverwatch: 1
+        CMSkillMedical: 2
+        CMSkillMeleeWeapons: 1
+        CMSkillEndurance: 4
+        CMSkillJtac: 3
+    - type: JobPrefix
+      prefix: to-job-prefix-marsoc-officer
+    - type: MarineOrders
+    - type: CMPointing
+    - type: SquadLeader
+      icon:
+        sprite: _ColonialMarine/Interface/job_icons/UNMC/marsoc.rsi
+        state: hudsquad_soccmd
+    - type: TOMarsocOfficer
+    - type: TOMarsocOperative
+      rankPrefix: to-marsoc-rank-officer
+      callsignDataset: TOMarsocCallsignsOfficer
+      roleDutiesLoc: to-ghost-role-marsoc-officer-desc
+      canBeSynth: false
+      canDeployBeacon: true
+      canConfirmExtraction: true
+  hidden: false
+
+- type: startingGear
+  id: TOGearMarsocOfficer
+  equipment:
+    head: TOArmorHelmetMARSOC
+    eyes: CMGlassesSPPCommandoNightVision
+    mask: CMMaskBalaclavaMARSOC
+    ears: CMHeadsetMARSOC
+    jumpsuit: CMJumpsuitMarsocWebbingBuckshot
+    outerClothing: TOArmorMARSOCXM40
+    gloves: CMHandsVeteran
+    shoes: CMBootsBlackFilled
+    suitstorage: TOWeaponRifleXM40Marsoc
+    id: TODogtagMarsocOfficer
+    belt: CMWeaponShotgunXM38Filled
+    back: CMSatchelMARSOC
+    pocket1: CMPouchMedicalSocMarineRaiderFill
+    pocket2: CMPouchToolsSocMarineRaiderFill
+  storage:
+    back:
+    - TOMarsocExtractionBeacon
+
+# MARSOC TEAM LEADER (2nd Lt.)
+- type: job
+  parent: CMJobBase
+  id: TOMarsocTeamLeader
+  name: to-job-name-marsoc-tl
+  description: to-ghost-role-marsoc-tl-desc
+  playTimeTracker: TOJobMarsocTeamLeader
+  supervisors: to-marsoc-supervisors-tl
+  ranks:
+    TORankMarsocSecondLt: [ ]
+  startingGear: TOGearMarsocTeamLeader
+  icon: CMJobIconMarineRaiderLeader
+  joinNotifyCrew: false
+  access:
+  - CMAccessERT
+  accessGroups:
+  - ShipMasterAccess
+  spawnMenuRoleName: ST MARSOC Team Leader (2ndLt)
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: Language
+      spokenLanguages:
+      - English
+      - SignLanguage
+      - Russian
+      - Japanese
+      understoodLanguages:
+      - English
+      - SignLanguage
+      - Russian
+      - Japanese
+      currentLanguage: English
+      defaultLanguage: English
+    - type: Skills
+      skills:
+        CMSkillCqc: 4
+        CMSkillFireman: 4
+        CMSkillEngineer: 2
+        CMSkillConstruction: 2
+        CMSkillFirearms: 2
+        CMSkillLeadership: 2
+        CMSkillMedical: 2
+        CMSkillMeleeWeapons: 1
+        CMSkillEndurance: 4
+        CMSkillJtac: 2
+    - type: JobPrefix
+      prefix: to-job-prefix-marsoc-tl
+    - type: MarineOrders
+    - type: CMPointing
+    - type: SquadLeader
+      icon:
+        sprite: _ColonialMarine/Interface/job_icons/UNMC/marsoc.rsi
+        state: hudsquad_soctl_a
+    - type: TOMarsocOperative
+      rankPrefix: to-marsoc-rank-lt
+      callsignDataset: TOMarsocCallsignsTeamLeader
+      roleDutiesLoc: to-ghost-role-marsoc-tl-desc
+      canBeSynth: false
+      canDeployBeacon: true
+      canConfirmExtraction: true
+  hidden: true
+
+- type: startingGear
+  id: TOGearMarsocTeamLeader
+  equipment:
+    head: TOArmorHelmetMARSOC
+    eyes: CMGlassesSPPCommandoNightVision
+    mask: CMMaskBalaclavaMARSOC
+    ears: CMHeadsetMARSOC
+    jumpsuit: CMJumpsuitMarsocWebbingBuckshot
+    outerClothing: TOArmorMARSOCXM40
+    gloves: CMHandsVeteran
+    shoes: CMBootsBlackFilled
+    suitstorage: TOWeaponRifleXM40Marsoc
+    id: TODogtagMarsocTeamLeader
+    belt: CMWeaponShotgunXM38Filled
+    back: CMSatchelMARSOC
+    pocket1: CMPouchMedicalSocMarineRaiderFill
+    pocket2: CMPouchToolsSocMarineRaiderFill
+  storage:
+    back:
+    - TOMarsocExtractionBeacon
+
+# MARSOC OPERATIVE (SSgt.)
+- type: job
+  parent: CMJobBase
+  id: TOMarsocOperative
+  name: to-job-name-marsoc-operative
+  description: to-ghost-role-marsoc-operative-desc
+  playTimeTracker: TOJobMarsocOperative
+  supervisors: to-marsoc-supervisors-squad
+  ranks:
+    CMRankStaffSergeant: [ ]
+  startingGear: TOGearMarsocOperative
+  icon: CMJobIconMarineRaider
+  joinNotifyCrew: false
+  access:
+  - CMAccessERT
+  accessGroups:
+  - ShipMasterAccess
+  spawnMenuRoleName: ST MARSOC Operative (SSgt)
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: Language
+      spokenLanguages:
+      - English
+      - SignLanguage
+      understoodLanguages:
+      - English
+      - SignLanguage
+      - Russian
+      - Japanese
+      currentLanguage: English
+      defaultLanguage: English
+    - type: Skills
+      skills:
+        CMSkillCqc: 3
+        CMSkillFireman: 2
+        CMSkillEngineer: 3
+        CMSkillConstruction: 2
+        CMSkillFirearms: 2
+        CMSkillMedical: 2
+        CMSkillMeleeWeapons: 1
+        CMSkillEndurance: 3
+        CMSkillJtac: 1
+    - type: JobPrefix
+      prefix: to-job-prefix-marsoc-operative
+    - type: DemoSpecWhitelist
+    - type: GrenadeSpecWhitelist
+    - type: TOMarsocOperative
+      rankPrefix: to-marsoc-rank-ssgt
+      callsignDataset: TOMarsocCallsignsSquad
+      roleDutiesLoc: to-ghost-role-marsoc-operative-desc
+      canBeSynth: true
+  hidden: true
+
+- type: startingGear
+  id: TOGearMarsocOperative
+  equipment:
+    head: TOArmorHelmetMARSOC
+    mask: CMMaskBalaclavaMARSOC
+    ears: CMHeadsetMARSOC
+    jumpsuit: CMJumpsuitMarsocWebbingBuckshot
+    outerClothing: TOArmorMARSOCXM40
+    gloves: CMHandsVeteran
+    shoes: CMBootsBlackFilled
+    suitstorage: TOWeaponRifleXM40Marsoc
+    id: TODogtagMarsocOperative
+    belt: CMWeaponShotgunXM38Filled
+    back: CMSatchelMARSOC
+    pocket1: CMPouchMedicalSocMarineRaiderFill
+    pocket2: CMPouchToolsSocMarineRaiderFill
+
+# MARSOC MEDIC (SSgt.)
+- type: job
+  parent: CMJobBase
+  id: TOMarsocMedic
+  name: to-job-name-marsoc-medic
+  description: to-ghost-role-marsoc-medic-desc
+  playTimeTracker: TOJobMarsocMedic
+  supervisors: to-marsoc-supervisors-squad
+  ranks:
+    CMRankStaffSergeant: [ ]
+  startingGear: TOGearMarsocMedic
+  icon: TOJobIconMarsocMedic
+  joinNotifyCrew: false
+  access:
+  - CMAccessERT
+  accessGroups:
+  - ShipMasterAccess
+  spawnMenuRoleName: ST MARSOC Medic (SSgt)
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: Language
+      spokenLanguages:
+      - English
+      - SignLanguage
+      understoodLanguages:
+      - English
+      - SignLanguage
+      - Russian
+      - Japanese
+      currentLanguage: English
+      defaultLanguage: English
+    - type: Skills
+      skills:
+        CMSkillCqc: 3
+        CMSkillFireman: 3
+        CMSkillEngineer: 2
+        CMSkillConstruction: 2
+        CMSkillFirearms: 2
+        CMSkillMedical: 3
+        CMSkillSurgery: 3
+        CMSkillMeleeWeapons: 1
+        CMSkillEndurance: 3
+        CMSkillJtac: 1
+    - type: JobPrefix
+      prefix: to-job-prefix-marsoc-medic
+    - type: SquadLeader
+      icon:
+        sprite: _ColonialMarine/Interface/job_icons/UNMC/marsoc.rsi
+        state: hudsquad_socmed
+    - type: TOMarsocOperative
+      rankPrefix: to-marsoc-rank-ssgt
+      callsignDataset: TOMarsocCallsignsSquad
+      roleDutiesLoc: to-ghost-role-marsoc-medic-desc
+      canBeSynth: true
+  hidden: true
+
+- type: startingGear
+  id: TOGearMarsocMedic
+  equipment:
+    head: TOArmorHelmetMARSOC
+    mask: CMMaskBalaclavaMARSOC
+    ears: CMHeadsetMARSOC
+    jumpsuit: CMJumpsuitMarsocWebbingBuckshot
+    outerClothing: TOArmorMARSOCXM40
+    gloves: CMHandsVeteran
+    shoes: CMBootsBlackFilled
+    suitstorage: TOWeaponRifleXM40Marsoc
+    id: TODogtagMarsocMedic
+    belt: TOBeltMedicalMarsocFilled
+    back: CMSatchelMARSOC
+    pocket1: CMPouchMedicalSocMarineRaiderFill
+    pocket2: CMPouchToolsSocMarineRaiderFill
+  storage:
+    back:
+    - CMPouchMedicalSocMarineRaiderFill
+
+# MARSOC SPECIALIST (2nd Lt.)
+
+- type: job
+  parent: CMJobBase
+  id: TOMarsocSpecialist
+  name: to-job-name-marsoc-specialist
+  description: to-ghost-role-marsoc-specialist-desc
+  playTimeTracker: TOJobMarsocSpecialist
+  supervisors: to-marsoc-supervisors-squad
+  ranks:
+    TORankMarsocSecondLt: [ ]
+  startingGear: TOGearMarsocSpecialist
+  icon: TOJobIconMarsocSpecialist
+  joinNotifyCrew: false
+  access:
+  - CMAccessERT
+  accessGroups:
+  - ShipMasterAccess
+  spawnMenuRoleName: ST MARSOC Specialist (2ndLt)
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: Language
+      spokenLanguages:
+      - English
+      - SignLanguage
+      understoodLanguages:
+      - English
+      - SignLanguage
+      - Russian
+      - Japanese
+      currentLanguage: English
+      defaultLanguage: English
+    - type: Skills
+      skills:
+        CMSkillCqc: 3
+        CMSkillFireman: 2
+        CMSkillEngineer: 2
+        CMSkillConstruction: 2
+        CMSkillFirearms: 3
+        CMSkillMedical: 2
+        CMSkillMeleeWeapons: 1
+        CMSkillEndurance: 3
+        CMSkillJtac: 2
+    - type: JobPrefix
+      prefix: to-job-prefix-marsoc-specialist
+    - type: SquadLeader
+      icon:
+        sprite: _ColonialMarine/Interface/job_icons/UNMC/marsoc.rsi
+        state: hudsquad_socsniper
+    - type: SniperWhitelist
+    - type: ScoutWhitelist
+    - type: TOMarsocOperative
+      rankPrefix: to-marsoc-rank-lt
+      callsignDataset: TOMarsocCallsignsSquad
+      roleDutiesLoc: to-ghost-role-marsoc-specialist-desc
+      canBeSynth: true
+      canDeployBeacon: true
+  hidden: true
+
+- type: startingGear
+  id: TOGearMarsocSpecialist
+  equipment:
+    head: TOArmorHelmetMARSOC
+    mask: CMMaskBalaclavaMARSOC
+    ears: CMHeadsetMARSOC
+    jumpsuit: CMJumpsuitMarsocWebbingBuckshot
+    outerClothing: TOArmorMARSOCSniper
+    gloves: CMHandsVeteran
+    shoes: CMBootsBlackFilled
+    suitstorage: CML112SniperRifleSuppressed
+    id: TODogtagMarsocSpecialist
+    belt: CMWeaponShotgunXM38Filled
+    back: CMSatchelMARSOC
+    pocket1: CMPouchMedicalSocMarineRaiderFill
+    pocket2: CMPouchToolsSocMarineRaiderFill
+  storage:
+    back:
+    - CMMagazineSniperL112
+    - CMMagazineSniperL112
+
+- type: entity
+  parent: CMIDCardStandardDogtag
+  id: TODogtagMarsocOfficer
+  components:
+  - type: PresetIdCard
+    job: TOMarsocOfficer
+
+- type: entity
+  parent: [ CMIDCardStandardDogtagHidden, TODogtagMarsocOfficer ]
+  id: TODogtagMarsocOfficerHidden
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: CMIDCardStandardDogtag
+  id: TODogtagMarsocTeamLeader
+  components:
+  - type: PresetIdCard
+    job: TOMarsocTeamLeader
+
+- type: entity
+  parent: [ CMIDCardStandardDogtagHidden, TODogtagMarsocTeamLeader ]
+  id: TODogtagMarsocTeamLeaderHidden
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: CMIDCardStandardDogtag
+  id: TODogtagMarsocOperative
+  components:
+  - type: PresetIdCard
+    job: TOMarsocOperative
+
+- type: entity
+  parent: [ CMIDCardStandardDogtagHidden, TODogtagMarsocOperative ]
+  id: TODogtagMarsocOperativeHidden
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: CMIDCardStandardDogtag
+  id: TODogtagMarsocMedic
+  components:
+  - type: PresetIdCard
+    job: TOMarsocMedic
+
+- type: entity
+  parent: [ CMIDCardStandardDogtagHidden, TODogtagMarsocMedic ]
+  id: TODogtagMarsocMedicHidden
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: CMIDCardStandardDogtag
+  id: TODogtagMarsocSpecialist
+  components:
+  - type: PresetIdCard
+    job: TOMarsocSpecialist
+
+- type: entity
+  parent: [ CMIDCardStandardDogtagHidden, TODogtagMarsocSpecialist ]
+  id: TODogtagMarsocSpecialistHidden
+  categories: [ HideSpawnMenu ]
+
+- type: randomHumanoidSettings
+  parent: CMEventHumanoid
+  id: TOMarsocOfficerSettings
+  components:
+  - type: GhostRole
+    name: to-job-name-marsoc-officer
+    description: to-ghost-role-marsoc-officer-desc
+    rules: cm-ghost-role-information-sof-rules
+    reregister: false
+    job: TOMarsocOfficer
+    raffle:
+      settings: short
+  - type: GhostRoleApplySpecial
+    squad: SquadSOF
+
+- type: randomHumanoidSettings
+  parent: CMEventHumanoid
+  id: TOMarsocTeamLeaderSettings
+  components:
+  - type: GhostRole
+    name: to-job-name-marsoc-tl
+    description: to-ghost-role-marsoc-tl-desc
+    rules: cm-ghost-role-information-sof-rules
+    reregister: false
+    job: TOMarsocTeamLeader
+    raffle:
+      settings: short
+    requirements:
+    - !type:RoleTimeRequirement
+      role: CMJobSquadLeader
+      time: 180000
+    - !type:DepartmentTimeRequirement
+      department: CMDepartmentMarine
+      time: 540000
+  - type: GhostRoleApplySpecial
+    squad: SquadSOF
+
+- type: randomHumanoidSettings
+  parent: CMEventHumanoid
+  id: TOMarsocOperativeSettings
+  components:
+  - type: GhostRole
+    name: to-job-name-marsoc-operative
+    description: to-ghost-role-marsoc-operative-desc
+    rules: cm-ghost-role-information-sof-rules
+    reregister: false
+    job: TOMarsocOperative
+    raffle:
+      settings: short
+    requirements:
+    - !type:RoleTimeRequirement
+      role: CMJobRifleman
+      time: 180000
+    - !type:DepartmentTimeRequirement
+      department: CMDepartmentMarine
+      time: 360000
+  - type: GhostRoleApplySpecial
+    squad: SquadSOF
+
+- type: randomHumanoidSettings
+  parent: CMEventHumanoid
+  id: TOMarsocMedicSettings
+  components:
+  - type: GhostRole
+    name: to-job-name-marsoc-medic
+    description: to-ghost-role-marsoc-medic-desc
+    rules: cm-ghost-role-information-sof-rules
+    reregister: false
+    job: TOMarsocMedic
+    raffle:
+      settings: short
+    requirements:
+    - !type:RoleTimeRequirement
+      role: CMJobHospitalCorpsman
+      time: 108000
+    - !type:DepartmentTimeRequirement
+      department: CMDepartmentMarine
+      time: 360000
+  - type: GhostRoleApplySpecial
+    squad: SquadSOF
+
+- type: randomHumanoidSettings
+  parent: CMEventHumanoid
+  id: TOMarsocSpecialistSettings
+  components:
+  - type: GhostRole
+    name: to-job-name-marsoc-specialist
+    description: to-ghost-role-marsoc-specialist-desc
+    rules: cm-ghost-role-information-sof-rules
+    reregister: false
+    job: TOMarsocSpecialist
+    raffle:
+      settings: short
+    requirements:
+    - !type:RoleTimeRequirement
+      role: CMJobWeaponsSpecialist
+      time: 36000
+    - !type:DepartmentTimeRequirement
+      department: CMDepartmentMarine
+      time: 360000
+  - type: GhostRoleApplySpecial
+    squad: SquadSOF
+
+- type: entity
+  id: TOSpawnerMarsocOfficer
+  suffix: ST, Role, MARSOC
+  components:
+  - type: Sprite
+    sprite: _ColonialMarine/Markers/landmarks.rsi
+    state: unmc_spawn
+  - type: RandomHumanoidSpawner
+    settings: TOMarsocOfficerSettings
+
+- type: entity
+  id: TOSpawnerMarsocTeamLeader
+  suffix: ST, Role, MARSOC
+  components:
+  - type: Sprite
+    sprite: _ColonialMarine/Markers/landmarks.rsi
+    state: unmc_spawn
+  - type: RandomHumanoidSpawner
+    settings: TOMarsocTeamLeaderSettings
+
+- type: entity
+  id: TOSpawnerMarsocOperative
+  suffix: ST, Role, MARSOC
+  components:
+  - type: Sprite
+    sprite: _ColonialMarine/Markers/landmarks.rsi
+    state: unmc_spawn
+  - type: RandomHumanoidSpawner
+    settings: TOMarsocOperativeSettings
+
+- type: entity
+  id: TOSpawnerMarsocMedic
+  suffix: ST, Role, MARSOC
+  components:
+  - type: Sprite
+    sprite: _ColonialMarine/Markers/landmarks.rsi
+    state: unmc_spawn
+  - type: RandomHumanoidSpawner
+    settings: TOMarsocMedicSettings
+
+- type: entity
+  id: TOSpawnerMarsocSpecialist
+  suffix: ST, Role, MARSOC
+  components:
+  - type: Sprite
+    sprite: _ColonialMarine/Markers/landmarks.rsi
+    state: unmc_spawn
+  - type: RandomHumanoidSpawner
+    settings: TOMarsocSpecialistSettings
+
+- type: entity
+  parent: BaseAction
+  id: TOActionMarsocDeploySquad
+  components:
+  - type: InstantAction
+    icon:
+      sprite: _ColonialMarine/Interface/job_icons/UNMC/marsoc.rsi
+      state: hudsquad_soccmd
+    event: !type:TOMarsocDeploySquadActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: TOActionMarsocToggleParadrop
+  components:
+  - type: InstantAction
+    icon:
+      sprite: _ColonialMarine/Objects/Clothing/Back/parachutes.rsi
+      state: parachute
+    event: !type:TOMarsocToggleParadropActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: TOActionMarsocConfirmExtraction
+  components:
+  - type: InstantAction
+    icon:
+      sprite: _ColonialMarine/Interface/job_icons/UNMC/marsoc.rsi
+      state: hudsquad_soctl_a
+    event: !type:TOMarsocConfirmExtractionActionEvent

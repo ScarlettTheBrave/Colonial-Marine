@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "https://github.com/yogstation13/Yogstation, https://github.com/cmss13-devs/cmss13",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "degoggles",
+      "directions": 1
+    },
+    {
+      "name": "meson",
+      "directions": 1,
+      "delays": [
+        [
+          0.6,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "equipped-EYES",
+      "directions": 4
+    },
+    {
+      "name": "on-equipped-EYES",
+      "directions": 4
+    }
+  ]
+}
